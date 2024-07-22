@@ -8,9 +8,9 @@ type TypographyType = {
 };
 const defaultClassNames = {
   h1: "text-purple-dark text-start text-5xl font-semibold",
-  h2: "text-sky-600 text-3xl font-bold mb-6 mt-6",
+  h2: "text-lg font-bold line-clamp-2",
   h3: "text-lg text-4xl semi-bold ",
-  p: "text-sm text-gray-600",
+  p: "text-sm text-gray-500",
 };
 const Typography = ({
   variant = "p",

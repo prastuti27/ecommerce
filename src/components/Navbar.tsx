@@ -7,7 +7,7 @@ import { FaShoppingCart, FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   return (
-    <div className="flex items-center justify-between px-4 py-3 text-white bg-gray-800">
+    <div className="flex items-center justify-between px-20 py-3 text-white bg-gray-800">
       <div className="flex items-center">
         <div className="text-2xl font-bold">Brand</div>
 
