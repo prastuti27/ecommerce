@@ -1,7 +1,7 @@
 // src/components/ProductCard.tsx
 
-import Typography from "./Typography";
-import Button from "./Button";
+import Typography from "../Typography";
+import Button from "../Button";
 
 interface ProductCardProps {
   id: number;

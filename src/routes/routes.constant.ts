@@ -3,4 +3,5 @@ export const NAVIGATION_ROUTES = {
   PRODUCTDETAILS: "/product/:id",
   LOGIN: "/login",
   ADMINDASHBOARD: "/admin",
+  ADMINPRODUCTS: "/admin/products",
 };

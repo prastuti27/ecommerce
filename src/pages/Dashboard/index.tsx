@@ -1,4 +1,4 @@
-import Products from "../../components/User/Products";
+import Products from "../../components/User/UserProducts";
 
 const Dashboard = () => {
   return (
