@@ -1,9 +1,10 @@
 // src/components/Products.tsx
 
-import { useGetProductsQuery } from "../service/Api/FakeApiSlice";
-import ProductCard from "./Card";
+import { useGetProductsQuery } from "../../service/Api/FakeApiSlice";
+import { useNavigate } from "react-router-dom";
+import ProductCard from "../Card";
 
-interface Products {
+interface Product {
   id: number;
   title: string;
   price: string;
@@ -13,14 +14,19 @@ interface Products {
 
 const Products = () => {
   const { data: products, error, isLoading } = useGetProductsQuery();
+  const navigate = useNavigate();
+
+  const handleCardClick = (id: number) => {
+    navigate(`/product/${id}`);
+  };
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching products.</div>;
 
   return (
-    <div className="products-container">
+    <div className="products-container mt-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {products?.map((product: Products) => (
+        {products?.map((product: Product) => (
           <ProductCard
             key={product.id}
             id={product.id}
@@ -28,6 +34,7 @@ const Products = () => {
             price={product.price}
             category={product.category}
             image={product.image}
+            onClick={handleCardClick} // Pass handleCardClick to ProductCard
           />
         ))}
       </div>

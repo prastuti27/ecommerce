@@ -9,7 +9,10 @@ export const fakeApiSlice = createApi({
     getProducts: builder.query<any, void>({
       query: () => "products",
     }),
+    getProductsById: builder.query<any, number>({
+      query: (id) => `products/${id}`,
+    }),
   }),
 });
 
-export const { useGetProductsQuery } = fakeApiSlice;
+export const { useGetProductsQuery, useGetProductsByIdQuery } = fakeApiSlice;
