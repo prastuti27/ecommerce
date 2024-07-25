@@ -26,7 +26,7 @@ const Input = ({
   className = "",
 }: InputProps) => {
   const defaultClasses =
-    "flex-1 p-4 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-black dark:text-white";
+    "border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-black dark:text-white";
   return (
     <input
       type={type}
