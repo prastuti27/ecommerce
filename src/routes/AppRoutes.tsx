@@ -7,14 +7,23 @@ import Login from "src/pages/Auth/Login";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Admin/Sidebar";
 import ProductDetails from "../pages/ProductDetails";
-import Admindash from "../pages/Admin/Admindash";
+import AdminDash from "../pages/Admin/AdminDash";
 import AdminProducts from "../pages/Admin/AdminProducts";
-
+import AddProduct from "../pages/Admin/AddProduct";
+import EditProduct from "../pages/Admin/EditProduct";
 const routes = [
   { path: NAVIGATION_ROUTES.DASHBOARD, element: <Dashboard /> },
   { path: NAVIGATION_ROUTES.PRODUCTDETAILS, element: <ProductDetails /> },
-  { path: NAVIGATION_ROUTES.ADMINDASHBOARD, element: <Admindash /> },
+  { path: NAVIGATION_ROUTES.ADMINDASHBOARD, element: <AdminDash /> },
   { path: NAVIGATION_ROUTES.ADMINPRODUCTS, element: <AdminProducts /> },
+  {
+    path: NAVIGATION_ROUTES.ADDPRODUCT,
+    element: <AddProduct />,
+  },
+  {
+    path: NAVIGATION_ROUTES.EDITPRODUCT,
+    element: <EditProduct />,
+  },
   { path: NAVIGATION_ROUTES.LOGIN, element: <Login /> },
 ];
 
@@ -30,7 +39,7 @@ const AppRoutes = () => {
           <Sidebar className="w-64" />
           <div className="flex flex-col flex-grow ml-64">
             <Navbar isAdmin />
-            <main className="p-4 flex-grow">{routing}</main>
+            <main className=" flex-grow">{routing}</main>
           </div>
         </div>
       ) : (

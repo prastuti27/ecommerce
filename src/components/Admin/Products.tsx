@@ -1,5 +1,3 @@
-// src/components/Admin/Products.tsx
-
 import { useGetProductsQuery } from "../../service/Api/FakeApiSlice";
 import { useNavigate } from "react-router-dom";
 import Table from "./Table";
@@ -10,9 +8,11 @@ const Products = () => {
   const navigate = useNavigate();
 
   const handleEdit = (id: number) => {
-    navigate(`/edit-product/${id}`);
+    navigate(`/admin/edit-product/${id}`);
   };
-
+  const handleAddProduct = () => {
+    navigate(`/admin/add-product`);
+  };
   const handleDelete = (id: number) => {
     console.log(`Delete product with id: ${id}`);
   };
@@ -23,11 +23,18 @@ const Products = () => {
   return (
     <>
       <div className="flex justify-end mb-4">
-        <Button className=" bg-blue-500 text-white hover:bg-blue-700">
+        <Button
+          onClick={handleAddProduct}
+          className="bg-blue-500 text-white hover:bg-blue-700"
+        >
           Add Product
         </Button>
       </div>
-      <Table data={products} onEdit={handleEdit} onDelete={handleDelete} />
+      <Table
+        data={products ?? []} // Ensure an empty array is passed if products is undefined
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
     </>
   );
 };

@@ -1,9 +1,9 @@
 import React from "react";
 
 interface InputProps {
-  type?: "text" | "password" | "email" | "search";
+  type?: "text" | "password" | "email" | "number" | "search";
   placeholder?: string;
-  value?: string;
+  value?: string | number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -23,8 +23,10 @@ const Input = ({
   disabled = false,
   name,
   id,
-  className,
+  className = "",
 }: InputProps) => {
+  const defaultClasses =
+    "flex-1 p-4 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-black dark:text-white";
   return (
     <input
       type={type}
@@ -36,7 +38,7 @@ const Input = ({
       disabled={disabled}
       name={name}
       id={id}
-      className={className}
+      className={`${defaultClasses} ${className}`}
     />
   );
 };

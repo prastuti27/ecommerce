@@ -1,5 +1,3 @@
-// src/components/Admin/Table.tsx
-
 import Button from "../Button";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
@@ -7,7 +5,7 @@ interface TableProps {
   data: {
     id: number;
     title: string;
-    price: string;
+    price: number; // Updated to number
     category: string;
     image: string;
   }[];
@@ -44,16 +42,16 @@ const Table = ({ data, onEdit, onDelete }: TableProps) => {
                 />
               </td>
               <td className="py-2 px-4 border-b">
-                <div className="flex ">
+                <div className="flex">
                   <Button
                     onClick={() => onEdit(product.id)}
-                    className="mr-2 text-blue-500 hover:text-blue-700"
+                    className="mr-2 text-blue-500 hover:text-blue-700 flex items-center"
                   >
                     <FaEdit />
                   </Button>
                   <Button
                     onClick={() => onDelete(product.id)}
-                    className="text-red-500 hover:text-red-700"
+                    className="text-red-500 hover:text-red-700 flex items-center"
                   >
                     <FaTrash />
                   </Button>

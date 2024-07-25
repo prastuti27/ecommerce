@@ -15,12 +15,8 @@ exec 1>&2
 exec < /dev/tty
 consoleregexp='console\.[clear|dir|log|info]'
 # CHECK
-if test $(git diff --cached | grep $consoleregexp | wc -l) != 0
-then 
-  exec git diff --cached | grep -ne $consoleregexp
-  echo  "${red} COMMIT REJECTED!  Found console. references. Please remove them before committing.\n${no_color}"
-    exit 1;
-fi
+
+
 
 # Check ESLint Standards
 npx lint-staged ||
