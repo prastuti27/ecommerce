@@ -1,9 +1,9 @@
 // src/pages/ProductDetail.tsx
 import { useParams } from "react-router-dom";
-import { useGetProductsByIdQuery } from "../../service/Api/FakeApiSlice";
+import { useGetProductsByIdQuery } from "../../service/Api/Product/ProductApiSlice";
 import Typography from "../../components/Typography";
 import Button from "../../components/Button";
-import { Product } from "../../types/types";
+import { Product } from "../../types/Product";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();

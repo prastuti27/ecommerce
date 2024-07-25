@@ -1,7 +1,7 @@
 // src/pages/AddProduct.tsx
-import { useAddProductMutation } from "../../service/Api/FakeApiSlice";
+import { useAddProductMutation } from "../../service/Api/Product/ProductApiSlice";
 import ProductForm from "../../components/Admin/ProductForm";
-import { Product } from "../../types/types";
+import { Product } from "../../types/Product";
 
 const AddProduct = () => {
   const [addProduct] = useAddProductMutation();

@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
-import { Product } from "../../types/types";
+import { Product } from "../../types/Product";
 import Typography from "../../components/Typography";
 import { FaImage } from "react-icons/fa";
 import Button from "../../components/Button";

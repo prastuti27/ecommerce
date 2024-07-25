@@ -1,9 +1,9 @@
 // src/service/Api/FakeApiSlice.ts
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Product } from "../../types/types";
+import { Product } from "../../../types/Product";
 
-export const fakeApiSlice = createApi({
-  reducerPath: "api",
+export const productApiSlice = createApi({
+  reducerPath: "productapi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://fakestoreapi.com/",
   }),
@@ -31,6 +31,12 @@ export const fakeApiSlice = createApi({
         body: product,
       }),
     }),
+    deleteProduct: builder.mutation<Product, number>({
+      query: (id) => ({
+        url: `products/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -39,4 +45,5 @@ export const {
   useGetProductsByIdQuery,
   useAddProductMutation,
   useEditProductMutation,
-} = fakeApiSlice;
+  useDeleteProductMutation,
+} = productApiSlice;

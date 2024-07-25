@@ -11,11 +11,13 @@ import AdminDash from "../pages/Admin/AdminDash";
 import AdminProducts from "../pages/Admin/AdminProducts";
 import AddProduct from "../pages/Admin/AddProduct";
 import EditProduct from "../pages/Admin/EditProduct";
+import AdminUsers from "../pages/Admin/AdminUsers";
 const routes = [
   { path: NAVIGATION_ROUTES.DASHBOARD, element: <Dashboard /> },
   { path: NAVIGATION_ROUTES.PRODUCTDETAILS, element: <ProductDetails /> },
   { path: NAVIGATION_ROUTES.ADMINDASHBOARD, element: <AdminDash /> },
   { path: NAVIGATION_ROUTES.ADMINPRODUCTS, element: <AdminProducts /> },
+  { path: NAVIGATION_ROUTES.ADMINUSERS, element: <AdminUsers /> },
   {
     path: NAVIGATION_ROUTES.ADDPRODUCT,
     element: <AddProduct />,

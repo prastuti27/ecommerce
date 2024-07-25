@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import {
   useGetProductsByIdQuery,
   useEditProductMutation,
-} from "../../service/Api/FakeApiSlice";
+} from "../../service/Api/Product/ProductApiSlice";
 import ProductForm from "../../components/Admin/ProductForm";
-import { Product } from "../../types/types";
+import { Product } from "../../types/Product";
 
 const EditProduct = () => {
   const { id } = useParams<{ id: string }>();

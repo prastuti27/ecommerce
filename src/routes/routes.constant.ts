@@ -6,4 +6,5 @@ export const NAVIGATION_ROUTES = {
   ADMINPRODUCTS: "/admin/products",
   ADDPRODUCT: "/admin/add-product",
   EDITPRODUCT: "/admin/edit-product/:id",
+  ADMINUSERS: "/admin/users",
 };

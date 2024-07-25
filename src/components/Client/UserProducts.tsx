@@ -1,13 +1,13 @@
 // src/components/Products.tsx
 
-import { useGetProductsQuery } from "../../service/Api/FakeApiSlice";
+import { useGetProductsQuery } from "../../service/Api/Product/ProductApiSlice";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "./Card";
 
 interface Product {
   id: number;
   title: string;
-  price: string;
+  price: number;
   category: string;
   image: string;
 }

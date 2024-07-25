@@ -6,7 +6,7 @@ import Button from "../Button";
 interface ProductCardProps {
   id: number;
   title: string;
-  price: string;
+  price: number;
   category: string;
   image: string;
   onClick: (id: number) => void;

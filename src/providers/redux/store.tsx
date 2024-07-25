@@ -1,12 +1,17 @@
+// src/app/store.ts
 import { configureStore } from "@reduxjs/toolkit";
-import { fakeApiSlice } from "../../service/Api/FakeApiSlice";
+import { productApiSlice } from "../../service/Api/Product/ProductApiSlice";
+import { userApiSlice } from "../../service/Api/Users/UsersApiSlice";
 
 const store = configureStore({
   reducer: {
-    [fakeApiSlice.reducerPath]: fakeApiSlice.reducer,
+    [productApiSlice.reducerPath]: productApiSlice.reducer,
+    [userApiSlice.reducerPath]: userApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(fakeApiSlice.middleware),
+    getDefaultMiddleware()
+      .concat(productApiSlice.middleware)
+      .concat(userApiSlice.middleware),
 });
 
 export default store;

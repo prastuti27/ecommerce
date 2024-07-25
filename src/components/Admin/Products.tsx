@@ -1,20 +1,31 @@
-import { useGetProductsQuery } from "../../service/Api/FakeApiSlice";
+import {
+  useGetProductsQuery,
+  useDeleteProductMutation,
+} from "../../service/Api/Product/ProductApiSlice";
 import { useNavigate } from "react-router-dom";
 import Table from "./Table";
 import Button from "../Button";
 
 const Products = () => {
   const { data: products, error, isLoading } = useGetProductsQuery();
+  const [deleteProduct] = useDeleteProductMutation();
   const navigate = useNavigate();
 
   const handleEdit = (id: number) => {
     navigate(`/admin/edit-product/${id}`);
   };
+
   const handleAddProduct = () => {
     navigate(`/admin/add-product`);
   };
-  const handleDelete = (id: number) => {
-    console.log(`Delete product with id: ${id}`);
+
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteProduct(id).unwrap();
+      console.log(`Deleted product with id: ${id}`);
+    } catch (error) {
+      console.error("Failed to delete the product: ", error);
+    }
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -31,7 +42,7 @@ const Products = () => {
         </Button>
       </div>
       <Table
-        data={products ?? []} // Ensure an empty array is passed if products is undefined
+        data={products ?? []}
         onEdit={handleEdit}
         onDelete={handleDelete}
       />
