@@ -12,6 +12,9 @@ import AdminProducts from "../pages/Admin/AdminProducts";
 import AddProduct from "../pages/Admin/AddProduct";
 import EditProduct from "../pages/Admin/EditProduct";
 import AdminUsers from "../pages/Admin/AdminUsers";
+import AddUser from "../pages/Admin/AddUser";
+import EditUser from "../pages/Admin/EditUser";
+
 const routes = [
   { path: NAVIGATION_ROUTES.DASHBOARD, element: <Dashboard /> },
   { path: NAVIGATION_ROUTES.PRODUCTDETAILS, element: <ProductDetails /> },
@@ -21,6 +24,14 @@ const routes = [
   {
     path: NAVIGATION_ROUTES.ADDPRODUCT,
     element: <AddProduct />,
+  },
+  {
+    path: NAVIGATION_ROUTES.ADDUSER,
+    element: <AddUser />,
+  },
+  {
+    path: NAVIGATION_ROUTES.EDITUSER,
+    element: <EditUser />,
   },
   {
     path: NAVIGATION_ROUTES.EDITPRODUCT,

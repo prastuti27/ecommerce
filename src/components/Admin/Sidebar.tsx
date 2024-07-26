@@ -1,7 +1,7 @@
 // src/components/Admin/Sidebar.tsx
 
 import { Link } from "react-router-dom";
-import { FaHome, FaShoppingCart, FaUsers, FaChartBar } from "react-icons/fa";
+import { FaHome, FaShoppingCart, FaUsers } from "react-icons/fa";
 import Typography from "../Typography";
 
 interface SidebarProps {
@@ -32,12 +32,6 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
           className="flex items-center hover:bg-gray-700 p-2 rounded transition-colors duration-200"
         >
           <FaUsers size={20} className="mr-3" /> Users
-        </Link>
-        <Link
-          to="/admin/reports"
-          className="flex items-center hover:bg-gray-700 p-2 rounded transition-colors duration-200"
-        >
-          <FaChartBar size={20} className="mr-3" /> Reports
         </Link>
       </nav>
     </div>

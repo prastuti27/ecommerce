@@ -1,14 +1,16 @@
-// src/components/Users.tsx
-
-import { useGetUsersQuery } from "../../service/Api/Users/UsersApiSlice";
-
+import { useState } from "react";
+import {
+  useGetUsersQuery,
+  useDeleteUserMutation,
+} from "../../service/Api/Users/UsersApiSlice";
 import UserCard from "./UserCard";
 import { FaEye } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
 import Button from "../Button";
-import { useState } from "react";
 import Slider from "./Slider";
+import { useNavigate } from "react-router-dom";
+import { IoIosPersonAdd } from "react-icons/io";
 
 interface Address {
   city: string;
@@ -38,9 +40,16 @@ interface User {
 
 const Users = () => {
   const { data: users, error, isLoading } = useGetUsersQuery();
+  const [deleteUser, { isLoading: isDeleting, error: deleteError }] =
+    useDeleteUserMutation();
 
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isSliderOpen, setIsSliderOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleAddUser = () => {
+    navigate("/admin/add-user");
+  };
 
   const handleEyeButtonClick = (user: User) => {
     setSelectedUser(user);
@@ -52,25 +61,43 @@ const Users = () => {
     setSelectedUser(null);
   };
 
+  const handleEditUser = (userId: number) => {
+    navigate(`/admin/edit-user/${userId}`);
+  };
+
+  const handleDeleteUser = async (userId: number) => {
+    try {
+      await deleteUser(userId).unwrap();
+    } catch (err) {
+      console.error("Failed to delete the user: ", err);
+    }
+  };
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching users.</div>;
 
   return (
     <>
+      <div className="flex justify-end">
+        <Button onClick={handleAddUser} className="m-4 border bg-sky-400">
+          <IoIosPersonAdd />
+        </Button>
+      </div>
+
       <div className="users-container mt-5">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {users?.map((user: User) => (
             <div key={user.id} className="relative">
               <UserCard user={user} />
-              <div className="absolute  bottom-0 right-4 flex gap-2">
+              <div className="absolute bottom-0 right-4 flex gap-2">
                 <Button onClick={() => handleEyeButtonClick(user)}>
                   <FaEye />
                 </Button>
-                <Button>
+                <Button onClick={() => handleEditUser(user.id)}>
                   <AiFillEdit />
                 </Button>
-                <Button>
-                  <MdDeleteForever />
+                <Button onClick={() => handleDeleteUser(user.id)}>
+                  {isDeleting ? "Deleting..." : <MdDeleteForever />}
                 </Button>
               </div>
             </div>

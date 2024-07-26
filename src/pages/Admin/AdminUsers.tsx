@@ -1,4 +1,4 @@
-import Users from "../../components/Admin/Users";
+import Users from "../../components/Admin/UserList";
 const AdminUsers = () => {
   return (
     <div className="mx-20">
