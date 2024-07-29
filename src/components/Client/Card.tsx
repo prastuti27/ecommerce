@@ -25,9 +25,12 @@ const ProductCard = ({
   return (
     <div
       key={id}
-      className="border p-4 rounded-3xl shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-gray-600 cursor-pointer" // Add cursor-pointer to indicate it's clickable
+      className="p-4 rounded-3xl00   cursor-pointer" // Add cursor-pointer to indicate it's clickable
       onClick={() => onClick(id)}
     >
+      <Button className="bg-black text-white rounded-2xl text-xs mb-2">
+        {category}
+      </Button>
       <img src={image} alt={title} className="w-full h-40 object-cover mb-2" />
       <Typography variant="h2" content={title} className="line-clamp-2" />
       <Typography
@@ -35,9 +38,6 @@ const ProductCard = ({
         variant="p"
         content={formattedPrice}
       />
-      <Button className="bg-black text-white rounded-2xl text-xs mt-2">
-        {category}
-      </Button>
     </div>
   );
 };

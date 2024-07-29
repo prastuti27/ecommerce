@@ -5,7 +5,7 @@ interface TableProps {
   data: {
     id: number;
     title: string;
-    price: number; // Updated to number
+    price: number;
     category: string;
     image: string;
   }[];

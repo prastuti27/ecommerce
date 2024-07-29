@@ -1,12 +1,8 @@
 // src/service/Api/FakeApiSlice.ts
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Product } from "../../../types/Product";
+import ecomApi from "../ecomApi";
 
-export const productApiSlice = createApi({
-  reducerPath: "productapi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "https://fakestoreapi.com/",
-  }),
+export const productApiSlice = ecomApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query<Product[], void>({
       query: () => "products",

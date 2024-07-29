@@ -2,10 +2,6 @@
 
 import React from "react";
 import Typography from "../Typography";
-import Button from "../Button";
-import { AiFillEdit } from "react-icons/ai";
-import { MdDeleteForever } from "react-icons/md";
-import { FaEye } from "react-icons/fa6";
 
 interface Address {
   city: string;

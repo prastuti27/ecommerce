@@ -1,11 +1,7 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Users } from "../../../types/Users";
+import ecomApi from "../ecomApi";
 
-export const userApiSlice = createApi({
-  reducerPath: "userApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "https://fakestoreapi.com/",
-  }),
+export const userApiSlice = ecomApi.injectEndpoints({
   endpoints: (builder) => ({
     getUsers: builder.query<Users[], void>({
       query: () => "users",

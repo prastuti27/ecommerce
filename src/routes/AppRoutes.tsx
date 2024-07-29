@@ -1,5 +1,3 @@
-// src/components/AppRoutes.tsx
-
 import { useRoutes, useLocation } from "react-router-dom";
 import { NAVIGATION_ROUTES } from "./routes.constant";
 import Dashboard from "src/pages/Dashboard";
@@ -14,28 +12,44 @@ import EditProduct from "../pages/Admin/EditProduct";
 import AdminUsers from "../pages/Admin/AdminUsers";
 import AddUser from "../pages/Admin/AddUser";
 import EditUser from "../pages/Admin/EditUser";
+import PrivateRoute from "./PrivateRoute"; // Import PrivateRoute
 
 const routes = [
-  { path: NAVIGATION_ROUTES.DASHBOARD, element: <Dashboard /> },
-  { path: NAVIGATION_ROUTES.PRODUCTDETAILS, element: <ProductDetails /> },
-  { path: NAVIGATION_ROUTES.ADMINDASHBOARD, element: <AdminDash /> },
-  { path: NAVIGATION_ROUTES.ADMINPRODUCTS, element: <AdminProducts /> },
-  { path: NAVIGATION_ROUTES.ADMINUSERS, element: <AdminUsers /> },
+  {
+    path: NAVIGATION_ROUTES.DASHBOARD,
+    element: <PrivateRoute element={<Dashboard />} />,
+  },
+  {
+    path: NAVIGATION_ROUTES.PRODUCTDETAILS,
+    element: <PrivateRoute element={<ProductDetails />} />,
+  },
+  {
+    path: NAVIGATION_ROUTES.ADMINDASHBOARD,
+    element: <PrivateRoute element={<AdminDash />} />,
+  },
+  {
+    path: NAVIGATION_ROUTES.ADMINPRODUCTS,
+    element: <PrivateRoute element={<AdminProducts />} />,
+  },
+  {
+    path: NAVIGATION_ROUTES.ADMINUSERS,
+    element: <PrivateRoute element={<AdminUsers />} />,
+  },
   {
     path: NAVIGATION_ROUTES.ADDPRODUCT,
-    element: <AddProduct />,
+    element: <PrivateRoute element={<AddProduct />} />,
   },
   {
     path: NAVIGATION_ROUTES.ADDUSER,
-    element: <AddUser />,
+    element: <PrivateRoute element={<AddUser />} />,
   },
   {
     path: NAVIGATION_ROUTES.EDITUSER,
-    element: <EditUser />,
+    element: <PrivateRoute element={<EditUser />} />,
   },
   {
     path: NAVIGATION_ROUTES.EDITPRODUCT,
-    element: <EditProduct />,
+    element: <PrivateRoute element={<EditProduct />} />,
   },
   { path: NAVIGATION_ROUTES.LOGIN, element: <Login /> },
 ];
@@ -44,23 +58,17 @@ const AppRoutes = () => {
   const routing = useRoutes(routes);
   const location = useLocation();
   const isAdmin = location.pathname.startsWith("/admin");
+  const isLoginPage = location.pathname === NAVIGATION_ROUTES.LOGIN;
 
   return (
     <div className="flex flex-col min-h-screen">
-      {isAdmin ? (
-        <div className="flex flex-1">
-          <Sidebar className="w-64" />
-          <div className="flex flex-col flex-grow ml-64">
-            <Navbar isAdmin />
-            <main className=" flex-grow">{routing}</main>
-          </div>
-        </div>
-      ) : (
-        <>
-          <Navbar />
-          <main className="flex-grow p-4">{routing}</main>
-        </>
-      )}
+      {!isLoginPage && <Navbar isAdmin={isAdmin} />}
+      <div className="flex flex-1">
+        {isAdmin && <Sidebar className="w-64" />}
+        <main className={`flex-grow ${isAdmin ? "ml-64" : ""} p-4`}>
+          {routing}
+        </main>
+      </div>
     </div>
   );
 };
