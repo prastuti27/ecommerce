@@ -7,6 +7,7 @@ export interface Product {
   category: string;
   description: string;
   image: string;
+  name: string;
 }
 
 export interface ProductFormState {

@@ -16,7 +16,7 @@ const Navbar = ({ isAdmin = false }: NavbarProps) => {
   };
 
   return (
-    <div className="flex items-center justify-between px-20 py-3 text-white bg-gray-800">
+    <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-20 py-3 text-white bg-gray-800">
       <div className="flex items-center">
         <div className="text-2xl font-bold">{isAdmin ? "Admin" : "Brand"}</div>
 

@@ -2,6 +2,7 @@
 
 import { Link } from "react-router-dom";
 import { FaHome, FaShoppingCart, FaUsers } from "react-icons/fa";
+import { AiOutlineProduct } from "react-icons/ai";
 import Typography from "../Typography";
 
 interface SidebarProps {
@@ -25,7 +26,14 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
           to="/admin/products"
           className="flex items-center hover:bg-gray-700 p-2 rounded transition-colors duration-200"
         >
-          <FaShoppingCart size={20} className="mr-3" /> Products
+          <AiOutlineProduct size={20} className="mr-3" />
+          Products
+        </Link>
+        <Link
+          to="/admin/orders"
+          className="flex items-center hover:bg-gray-700 p-2 rounded transition-colors duration-200"
+        >
+          <FaShoppingCart size={20} className="mr-3" /> Orders
         </Link>
         <Link
           to="/admin/users"

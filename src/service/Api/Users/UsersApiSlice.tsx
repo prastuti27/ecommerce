@@ -11,6 +11,9 @@ export const userApiSlice = ecomApi.injectEndpoints({
       query: (id) => `users/${id}`,
     }),
 
+    getUsersByIds: builder.query<Users[], number[]>({
+      query: (ids) => `users?ids=${ids.join(",")}`,
+    }),
     addUser: builder.mutation<Users, Partial<Users>>({
       query: (newUser) => ({
         url: "users",
@@ -39,6 +42,7 @@ export const userApiSlice = ecomApi.injectEndpoints({
 export const {
   useGetUsersQuery,
   useGetUserByIdQuery,
+  useGetUsersByIdsQuery,
   useAddUserMutation,
   useEditUserMutation,
   useDeleteUserMutation,

@@ -1,6 +1,6 @@
 // src/service/Api/FakeApiSlice.ts
 
-import { Cart } from "../../../types/Cart"; // Make sure you have a Cart type defined
+import { Cart } from "../../../types/Cart";
 import ecomApi from "../ecomApi";
 
 const fakeApi = ecomApi.injectEndpoints({

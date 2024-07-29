@@ -9,4 +9,5 @@ export const NAVIGATION_ROUTES = {
   ADDUSER: "admin/add-user",
   EDITUSER: "admin/edit-user/:id",
   ADMINUSERS: "/admin/users",
+  ADMINORDER: "/admin/orders",
 };

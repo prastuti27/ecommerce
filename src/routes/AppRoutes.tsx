@@ -12,7 +12,8 @@ import EditProduct from "../pages/Admin/EditProduct";
 import AdminUsers from "../pages/Admin/AdminUsers";
 import AddUser from "../pages/Admin/AddUser";
 import EditUser from "../pages/Admin/EditUser";
-import PrivateRoute from "./PrivateRoute"; // Import PrivateRoute
+import PrivateRoute from "./PrivateRoute";
+import AdminOrder from "../pages/Admin/AdminOrder";
 
 const routes = [
   {
@@ -50,6 +51,10 @@ const routes = [
   {
     path: NAVIGATION_ROUTES.EDITPRODUCT,
     element: <PrivateRoute element={<EditProduct />} />,
+  },
+  {
+    path: NAVIGATION_ROUTES.ADMINORDER,
+    element: <PrivateRoute element={<AdminOrder />} />,
   },
   { path: NAVIGATION_ROUTES.LOGIN, element: <Login /> },
 ];

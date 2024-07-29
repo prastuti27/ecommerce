@@ -10,6 +10,13 @@ export const productApiSlice = ecomApi.injectEndpoints({
     getProductsById: builder.query<Product, number>({
       query: (id) => `products/${id}`,
     }),
+
+    getProductsByIds: builder.query<Product[], number[]>({
+      query: (ids) => ({
+        url: `/products`,
+        params: { ids: ids.join(",") },
+      }),
+    }),
     addProduct: builder.mutation<Product, Partial<Product>>({
       query: (newProduct) => ({
         url: "products",
@@ -39,6 +46,7 @@ export const productApiSlice = ecomApi.injectEndpoints({
 export const {
   useGetProductsQuery,
   useGetProductsByIdQuery,
+  useGetProductsByIdsQuery,
   useAddProductMutation,
   useEditProductMutation,
   useDeleteProductMutation,
