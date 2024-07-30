@@ -17,7 +17,7 @@ const Sidebar = ({ className = "" }: SidebarProps) => {
       <Typography variant="h1" content="Admin Dashboard" className="mb-6" />
       <nav className="flex flex-col space-y-4">
         <Link
-          to="/admin/home"
+          to="/admin"
           className="flex items-center hover:bg-gray-700 p-2 rounded transition-colors duration-200"
         >
           <FaHome size={20} className="mr-3" /> Home
