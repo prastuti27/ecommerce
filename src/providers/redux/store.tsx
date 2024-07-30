@@ -1,17 +1,19 @@
 // src/app/store.ts
 import { configureStore } from "@reduxjs/toolkit";
-import { productApiSlice } from "../../service/Api/Product/ProductApiSlice";
-import { userApiSlice } from "../../service/Api/Users/UsersApiSlice";
+import ecomApi from "../../service/Api/ecomApi";
+import { setupListeners } from "@reduxjs/toolkit/query";
 
 const store = configureStore({
   reducer: {
-    [productApiSlice.reducerPath]: productApiSlice.reducer,
-    [userApiSlice.reducerPath]: userApiSlice.reducer,
+    [ecomApi.reducerPath]: ecomApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(productApiSlice.middleware)
-      .concat(userApiSlice.middleware),
+    getDefaultMiddleware().concat(ecomApi.middleware),
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+setupListeners(store.dispatch);
 
 export default store;
