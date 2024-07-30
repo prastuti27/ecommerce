@@ -25,7 +25,7 @@ const ProductCard = ({
   return (
     <div
       key={id}
-      className="p-4 rounded-3xl00   cursor-pointer" // Add cursor-pointer to indicate it's clickable
+      className="p-4 rounded-3xl  cursor-pointer"
       onClick={() => onClick(id)}
     >
       <Button className="bg-black text-white rounded-2xl text-xs mb-2">

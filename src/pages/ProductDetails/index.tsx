@@ -21,7 +21,7 @@ const ProductDetail = () => {
   const { title, price, category, image, description } = product as Product;
 
   return (
-    <div className="product-detail-container px-20 p-4">
+    <div className="product-detail-container px-20 mt-10 p-4">
       <div className="flex flex-col md:flex-row">
         <img
           src={image}

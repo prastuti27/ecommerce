@@ -79,7 +79,7 @@ const ProductForm = ({
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 mt-10 dark:bg-gray-900">
       <Typography
         variant="h1"
         content={editMode ? "Edit Product" : "Add Product"}

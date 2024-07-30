@@ -78,26 +78,35 @@ const Users = () => {
 
   return (
     <>
-      <div className="flex justify-end">
+      <div className="flex justify-end mt-10">
         <Button onClick={handleAddUser} className="m-4 border bg-sky-400">
           <IoIosPersonAdd />
         </Button>
       </div>
 
       <div className="users-container mt-5">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           {users?.map((user: User) => (
-            <div key={user.id} className="relative">
+            <div key={user.id} className="relative ">
               <UserCard user={user} />
-              <div className="absolute bottom-0 right-4 flex gap-2">
-                <Button onClick={() => handleEyeButtonClick(user)}>
-                  <FaEye />
+              <div className="absolute bottom-0  mb-1 right-16 flex gap-2 text-gray-500 ">
+                <Button
+                  onClick={() => handleEyeButtonClick(user)}
+                  className="hover:text-gray-700"
+                >
+                  <FaEye size={22} />
                 </Button>
-                <Button onClick={() => handleEditUser(user.id)}>
-                  <AiFillEdit />
+                <Button
+                  onClick={() => handleEditUser(user.id)}
+                  className="hover:text-gray-700"
+                >
+                  <AiFillEdit size={22} />
                 </Button>
-                <Button onClick={() => handleDeleteUser(user.id)}>
-                  {isDeleting ? "Deleting..." : <MdDeleteForever />}
+                <Button
+                  onClick={() => handleDeleteUser(user.id)}
+                  className="hover:text-gray-700"
+                >
+                  {isDeleting ? "Deleting..." : <MdDeleteForever size={22} />}
                 </Button>
               </div>
             </div>

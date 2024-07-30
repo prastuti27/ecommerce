@@ -36,7 +36,7 @@ const Products = () => {
       <div className="flex justify-end mb-4">
         <Button
           onClick={handleAddProduct}
-          className="bg-blue-500 text-white hover:bg-blue-700"
+          className="bg-blue-500 text-white hover:bg-blue-700 mt-5"
         >
           Add Product
         </Button>

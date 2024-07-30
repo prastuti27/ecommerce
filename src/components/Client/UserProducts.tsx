@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ProductCard from "./Card";
 import Button from "../Button";
 import { useState } from "react";
+import { IoMdCart } from "react-icons/io";
 
 interface Product {
   id: number;
@@ -37,14 +38,22 @@ const Products = () => {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching products.</div>;
+  if (isLoading) return <div className="text-center mt-10">Loading...</div>;
+  if (error)
+    return (
+      <div className="text-center mt-10 text-red-500">
+        Error fetching products.
+      </div>
+    );
 
   return (
-    <div className="products-container mt-5">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+    <div className="products-container mt-10 px-4 md:px-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         {products?.map((product: Product) => (
-          <div key={product.id}>
+          <div
+            key={product.id}
+            className="bg-white shadow-md rounded-lg overflow-hidden transform hover:scale-105 transition duration-300"
+          >
             <ProductCard
               id={product.id}
               title={product.title}
@@ -54,10 +63,11 @@ const Products = () => {
               onClick={handleCardClick}
             />
             <Button
-              className="bg-black text-white rounded-2xl py-2 px-4 mt-2"
+              className="w-full bg-black text-white rounded-none py-2 mt-2 flex items-center justify-center gap-2 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
               onClick={() => handleAddToCart(product.id)}
             >
-              Add to Cart
+              <IoMdCart size={24} />
+              <span>BUY</span>
             </Button>
           </div>
         ))}

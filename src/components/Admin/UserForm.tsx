@@ -3,6 +3,9 @@ import Typography from "../../components/Typography";
 import Button from "../../components/Button";
 import Input from "../Input";
 import { UserFormState } from "../../types/Users";
+import userFormValidation from "./UserFormValidation";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface UserFormProps {
   editMode?: boolean;
@@ -30,6 +33,8 @@ const UserForm = ({
     phone: "",
   });
 
+  const { errors, validate } = userFormValidation(formData);
+
   useEffect(() => {
     if (userToEdit) {
       setFormData({
@@ -49,18 +54,26 @@ const UserForm = ({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length === 0) {
+      onSubmit(formData);
+      toast.success(
+        editMode ? "User updated successfully!" : "User added successfully!"
+      );
+    } else {
+      toast.error("Please fix the errors in the form.");
+    }
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 mt-14 dark:bg-gray-900">
       <Typography variant="h1" content={editMode ? "Edit User" : "Add User"} />
       <form
         onSubmit={handleSubmit}
-        className="space-y-6 w-full max-w-lg p-4 bg-white dark:bg-gray-800 rounded-md shadow-md"
+        className="space-y-6 w-full max-w-3xl p-8 bg-white dark:bg-gray-800 rounded-md shadow-md"
       >
         <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <div>
               <label
                 htmlFor="firstname"
@@ -77,6 +90,9 @@ const UserForm = ({
                 placeholder="First Name"
                 className="p-4 w-full"
               />
+              {errors.firstname && (
+                <p className="text-red-500">{errors.firstname}</p>
+              )}
             </div>
             <div>
               <label
@@ -94,9 +110,10 @@ const UserForm = ({
                 placeholder="Last Name"
                 className="p-4 w-full"
               />
+              {errors.lastname && (
+                <p className="text-red-500">{errors.lastname}</p>
+              )}
             </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
             <div>
               <label
                 htmlFor="email"
@@ -113,7 +130,10 @@ const UserForm = ({
                 placeholder="Email"
                 className="p-4 w-full"
               />
+              {errors.email && <p className="text-red-500">{errors.email}</p>}
             </div>
+          </div>
+          <div className="grid grid-cols-3 gap-4">
             <div>
               <label
                 htmlFor="username"
@@ -130,10 +150,11 @@ const UserForm = ({
                 placeholder="Username"
                 className="p-4 w-full"
               />
+              {errors.username && (
+                <p className="text-red-500">{errors.username}</p>
+              )}
             </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="col-span-2">
+            <div>
               <label
                 htmlFor="password"
                 className="text-gray-700 dark:text-gray-300"
@@ -149,9 +170,10 @@ const UserForm = ({
                 placeholder="Password"
                 className="p-4 w-full"
               />
+              {errors.password && (
+                <p className="text-red-500">{errors.password}</p>
+              )}
             </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
             <div>
               <label
                 htmlFor="city"
@@ -168,7 +190,10 @@ const UserForm = ({
                 placeholder="City"
                 className="p-4 w-full"
               />
+              {errors.city && <p className="text-red-500">{errors.city}</p>}
             </div>
+          </div>
+          <div className="grid grid-cols-3 gap-4">
             <div>
               <label
                 htmlFor="street"
@@ -185,9 +210,8 @@ const UserForm = ({
                 placeholder="Street"
                 className="p-4 w-full"
               />
+              {errors.street && <p className="text-red-500">{errors.street}</p>}
             </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
             <div>
               <label
                 htmlFor="number"
@@ -204,6 +228,7 @@ const UserForm = ({
                 placeholder="Number"
                 className="p-4 w-full"
               />
+              {errors.number && <p className="text-red-500">{errors.number}</p>}
             </div>
             <div>
               <label
@@ -221,9 +246,12 @@ const UserForm = ({
                 placeholder="Zip Code"
                 className="p-4 w-full"
               />
+              {errors.zipcode && (
+                <p className="text-red-500">{errors.zipcode}</p>
+              )}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <div>
               <label htmlFor="lat" className="text-gray-700 dark:text-gray-300">
                 Latitude
@@ -237,6 +265,7 @@ const UserForm = ({
                 placeholder="Latitude"
                 className="p-4 w-full"
               />
+              {errors.lat && <p className="text-red-500">{errors.lat}</p>}
             </div>
             <div>
               <label
@@ -254,10 +283,9 @@ const UserForm = ({
                 placeholder="Longitude"
                 className="p-4 w-full"
               />
+              {errors.long && <p className="text-red-500">{errors.long}</p>}
             </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="col-span-2">
+            <div>
               <label
                 htmlFor="phone"
                 className="text-gray-700 dark:text-gray-300"
@@ -273,16 +301,18 @@ const UserForm = ({
                 placeholder="Phone"
                 className="p-4 w-full"
               />
+              {errors.phone && <p className="text-red-500">{errors.phone}</p>}
             </div>
           </div>
         </div>
         <Button
           type="submit"
-          className="w-full py-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-lg font-semibold"
+          className="w-full py-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-lg"
         >
           {editMode ? "Update User" : "Add User"}
         </Button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
