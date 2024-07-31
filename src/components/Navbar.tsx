@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import Search from "./Search";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
@@ -10,9 +10,17 @@ interface NavbarProps {
 
 const Navbar = ({ isAdmin = false }: NavbarProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleLogout = () => {
+    // Remove access token from local storage
+    localStorage.removeItem("accessToken");
+    // Redirect to login page
+    navigate("/login");
   };
 
   return (
@@ -21,7 +29,7 @@ const Navbar = ({ isAdmin = false }: NavbarProps) => {
         <div className="text-2xl font-bold">{isAdmin ? "Admin" : "Brand"}</div>
 
         <nav className="ml-10 flex space-x-4">
-          {isAdmin ?? (
+          {!isAdmin && (
             <>
               <Link to="/" className="hover:text-gray-400">
                 Home
@@ -57,15 +65,17 @@ const Navbar = ({ isAdmin = false }: NavbarProps) => {
             <FaUser size={24} />
           </Button>
           {isDropdownOpen && (
-            <div className="absolute right-0 mt-2 bg-gray-800 bg-opacity-70 text-black rounded shadow-lg w-40">
+            <div className="absolute right-0 mt-2 bg-gray-800 bg-opacity-70 text-white rounded shadow-lg w-40">
               {isAdmin ? (
-                <Link
-                  to="/logout"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                  onClick={() => setIsDropdownOpen(false)}
+                <div
+                  className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    setIsDropdownOpen(false);
+                    handleLogout();
+                  }}
                 >
                   Logout
-                </Link>
+                </div>
               ) : (
                 <>
                   <Link
@@ -75,13 +85,15 @@ const Navbar = ({ isAdmin = false }: NavbarProps) => {
                   >
                     Admin
                   </Link>
-                  <Link
-                    to="/logout"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                    onClick={() => setIsDropdownOpen(false)}
+                  <div
+                    className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      setIsDropdownOpen(false);
+                      handleLogout();
+                    }}
                   >
                     Logout
-                  </Link>
+                  </div>
                 </>
               )}
             </div>

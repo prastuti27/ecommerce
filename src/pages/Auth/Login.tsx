@@ -6,11 +6,16 @@ import Typography from "../../components/Typography";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (!username || !password) {
+      setErrorMessage("Both fields are required.");
+      return;
+    }
     try {
       const response = await login({ username, password }).unwrap();
       console.log("Login successful:", response);
@@ -18,6 +23,7 @@ const Login = () => {
       navigate("/");
     } catch (err) {
       console.error("Failed to login:", err);
+      setErrorMessage("Failed to login. Please check your credentials.");
     }
   };
 
@@ -25,7 +31,6 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen">
       <div className="w-full max-w-md p-8 space-y-6 bg-gray-800 shadow-md rounded-lg">
         <Typography variant="h2" content="Login" />
-        {/* <h2 className="text-2xl font-bold text-center text-white">Login</h2> */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-300">
@@ -51,6 +56,11 @@ const Login = () => {
               className="w-full px-4 py-2 mt-1 text-gray-800 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500"
             />
           </div>
+          {errorMessage && (
+            <div className="p-2 text-red-400 bg-gray-700 rounded-md">
+              {errorMessage}
+            </div>
+          )}
           <button
             type="submit"
             disabled={isLoading}
