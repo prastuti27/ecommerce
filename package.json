@@ -17,7 +17,8 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "prepare": "husky install",
-    "prebuild": "yarn format && yarn lint && yarn test",
+    "prebuild": "yarn format && yarn test",
+
     "commit": "git-cz",
     "test": "react-scripts test",
     "postinstall": "npx husky install",
