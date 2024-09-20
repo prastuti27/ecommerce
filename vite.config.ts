@@ -16,5 +16,5 @@ export default defineConfig({
       src: path.resolve("src/"),
     },
   },
-  base: "/fake-api-ecommerce/",
+  base: "/fake-api-ecommerce.github.io/",
 });
